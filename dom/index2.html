@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="test"></input>
+
+    <!-- 属性 attribute id, type, placeholder, nameなど　--> 
+
+    <script>
+        const input = document.getElementById('test');
+        // Element はタグによって種類が違う
+
+        // 属性の追加方法
+        //input.type = 'text';
+        input.placeholder = 'あああ';
+        input.name = 'test';
+        input.setAttribute('type', 'text');
+        // 内容の変更(inputで囲っている部分)
+        input.textContent = 'テストです';
+
+        console.log(input);
+
+        // タグの作成
+        const anchor = document.createElement('a');
+        // タグに属性を設定
+        anchor.href = 'https://google.com';
+        anchor.target = '_blank';
+        anchor.textContent = 'リンク';
+
+        console.log(anchor);
+    </script>
+</body>
+</html>
