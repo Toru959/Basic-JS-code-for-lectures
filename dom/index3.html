@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red{
+            color:red;
+        }
+        .blue{
+            color:blue;
+        }
+    </style>
+</head>
+<body>
+   <div id="grand-father" >
+        <div id="parent">
+            <div id="target">
+                自分
+            </div>
+        </div>
+        <div id="divList">
+            <div class="div1">テスト1</div>
+            <div class="div2">テスト2</div>
+            <div class="div3">テスト3</div>
+        </div>
+   </div>
+<script>
+    const target = document.getElementById('target');
+    const newDiv = document.createElement('div');
+    newDiv.id = 'test';
+    newDiv.classList.add('red');
+    newDiv.textContent = 'テスト';
+
+    //newDivで設定したdivをtargetにつける
+    target.appendChild(newDiv); // appendChildは必ず最後に追加される。
+
+    //targetの階層と同じ階層にdivを作成したい場合
+    target.parentNode.appendChild(newDiv);
+
+    // divを指定した場所に作成する場合
+    const targetList = document.getElementById('divList');
+
+    // 作成したdivをどこに差し込むか指定
+    const reference = document.querySelector('.div2');
+
+    // divタグを作成    
+    const newElement = document.createElement('div');
+
+    // divタグ内にclass='div4'を作成
+    newElement.classList.add('div4');
+
+    // divの間にコメント作成
+    newElement.textContent = '追加分!';
+
+    // insertBeforeはreferenceで指定したclass='div2'の前に差し込まれる
+    targetList.insertBefore(newElement, reference);
+    // console.log('target');
+    // console.log('newDiv');
+</script>
+</body>
+</html>
