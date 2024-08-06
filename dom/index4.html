@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red{
+            color:red;
+        }
+        .blue{
+            color:blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="test"></div>
+    <!-- <button id="target" onclick="change_color()">押してね</button> -->
+    <button id="target">押してね</button>
+
+    <script>
+        // 1つ目　divタグの中にonclickで関数を指定し実行するのが一番簡単な方法
+        // function change_color(){
+        //     const test = document.getElementById('test');
+        //     test.textContent = 'テスト';
+        //     test.classList.add('red');
+        // }
+
+        // 2つ目　JSで設定 Element.onclick
+        // document.getElementById('target').onclick = function change_color(){
+        //     const test = document.getElementById('test');
+        //     test.textContent = 'テスト';
+        //     test.classList.add('red');
+        // }
+
+        // 3つ目　イベントハンドラー
+        const target = document.getElementById('target');
+
+        // 無名関数の引数内にeを入れるとイベントオブジェクトを取得できる
+        target.addEventListener('click', (e) => {
+            console.log(e);
+            const test = document.getElementById('test');
+            test.textContent = ('テスト');
+            test.classList.add('red');
+        }
+        );
+    </script>
+</body>
+</html>
