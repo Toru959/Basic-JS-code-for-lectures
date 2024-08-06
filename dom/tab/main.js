@@ -3,7 +3,6 @@
 const tabLabels = document.querySelectorAll('.tab__label li a');
 const tabContents = document.querySelectorAll('.tab__content');
 
- //console.log(tabLabels);
 tabLabels.forEach(clickedLabel => {
     clickedLabel.addEventListener('click', e => {
         e.preventDefault();
@@ -18,6 +17,11 @@ tabLabels.forEach(clickedLabel => {
             content.classList.remove('active');
         });
 
-    document.getElementById(clickedLabel.dataset.id).classList.add('active');
+        const targetContent = document.getElementById(clickedLabel.dataset.id);
+        if (targetContent) {
+            targetContent.classList.add('active');
+        } else {
+            console.error(`Element with ID '${clickedLabel.dataset.id}' not found.`);
+        }
     });
 });
