@@ -1,5 +1,33 @@
 'use strict';
 
+// DOMContentLoaded
+// document.addEventListener('DOMContentLoaded', () => {
+//   setInterval(() => {
+//     let target = currentIndex + 1;
+//     if (target === images.length){
+//       target = 0;
+//     }
+//     document.querySelectorAll('.carousel__thumbnails > li')[target].click();
+//     console.log(currentIndex);
+//   }, 2000);
+// });
+
+window.addEventListener('load', () => {
+  setInterval(() => {
+    let target = currentIndex + 1;
+    if(target === images.length){
+      target = 0;
+    }
+    document.querySelectorAll('.carousel__thumbnails > li')[target].click();
+  }, 2000);
+});
+
+// 即時関数
+(function immediate(){
+  console.log('即時関数です');
+})();
+
+
 const images = [
   'images/image000.jpg',
   'images/image001.jpg',
