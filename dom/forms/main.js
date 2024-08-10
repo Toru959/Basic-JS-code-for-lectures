@@ -17,6 +17,28 @@ formTestYourName.addEventListener('input', () => {
     yourNameValue.textContent = formTestYourName.value;
 });
 
+const preview = document.forms.form_test1.preview;
+
+// document.getElementById('.image_file').addEventListener('change', (event) => {
+//     console.log(e);
+// });
+
+document.forms.form_test1.image_file.addEventListener('change', (e) => {
+    //console.log(e.target.files[0]); 
+    const uploadFile = e.target.files[0];
+
+    // 画像を表示させるためには　FileReaderオブジェクトを使用する。
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+        preview.src = reader.result; // Base64
+        console.log(preview.src);
+    });
+    reader.readAsDataURL(uploadFile);
+});
+
+
+
+
 // const formTest2 = document.forms.form_test2;
 // console.log(formTest2);
 
