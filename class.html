@@ -8,7 +8,20 @@
 <body>
 
     <script>
-        class Product { // パスカルケース、　アッパーキャメル
+        class BaseProduct{
+            
+            echoProduct(){
+                console.log('親クラスです。');
+            }
+
+            //子クラスで同じ関数めいがあると上書きされる
+            //子クラスの方が優先される
+            getProduct(){
+                console.log('親関数です。');
+            }
+        }
+
+        class Product extends BaseProduct { // パスカルケース、　アッパーキャメル
             // 1ファイル1クラス
             
             //プロパティ(値)は関数内(constructorなど)にthis.xxx = xxx;のように書く
@@ -16,6 +29,8 @@
             //クラス直下で書くならbabelが必要
 
             constructor(productName){ // 1回だけ使える。一番最初に参照される関数
+                //this.product = productName;
+                super(); //子クラスでconstructorを使うならsuperは必須 　親クラスのconstructorを参照する
                 this.product = [productName];
             }
             
@@ -28,13 +43,20 @@
                 //this.product += item;
                 this.product.push(item); // 配列で入れると加工しやすい。
             }
+
+            static testProduct(){ // staticはnewでインスタンス化しなくても使用できる
+                console.log('静的メソッドです');
+            }
         }
 
+        Product.testProduct();
         const product = new Product('テスト');
         // console.log(product.product);
         // product.getProduct();            
         product.addProduct('追加です。');
         product.getProduct();            
+        product.echoProduct();
+
     </script> 
 </body>
 </html>
