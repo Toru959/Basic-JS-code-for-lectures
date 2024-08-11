@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise</title>
+</head>
+<body>
+   <script>
+        // 関数2
+        function test1(){
+            return '関数1';
+        }
+        
+        // 変数・定数
+        const test2 = function(){
+            return '関数2';
+        }
+        
+        // 関数を変数や定数に入れる場合はアロー関数でもかける
+        const test3 = () => {
+            return '関数3';
+        }
+
+        console.log(test1());
+        console.log(test2());
+        console.log(test3());
+
+        // Promise
+        // 1 状態(ok/ng)と値
+        // 2 Promiseチェーン
+
+        function promiseTest1(){ // インプットなし
+            // returnでpromiseを返すことでpromiseチェーンができる
+            // callback関数をアロー関数でかき状態ok.ng入れることができる
+            // 引数がok, ng 1つでも可
+            return new Promise((ok) => {
+                // 何かしらの処理
+                ok('プロミス1です');
+            });
+        }
+
+        // 変数・定数に入れるバージョン
+        const promiseTest2 = new Promise((ng) => {
+            ng('プロミス2です');
+        });
+
+        function promiseTest3(input){ // インプットあり
+            return new Promise((ok) => {
+                ok(`プロミス${input}です`); // バッククオート${引数}で受け取れる
+            });
+        }
+
+        console.log(promiseTest1());
+        console.log(promiseTest2);
+        console.log(promiseTest3(3));
+
+        
+   </script> 
+</body>
+</html>
