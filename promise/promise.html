@@ -22,9 +22,9 @@
             return '関数3';
         }
 
-        console.log(test1());
-        console.log(test2());
-        console.log(test3());
+        // console.log(test1());
+        // console.log(test2());
+        // console.log(test3());
 
         // Promise
         // 1 状態(ok/ng)と値
@@ -51,9 +51,9 @@
             });
         }
 
-        console.log(promiseTest1());
-        console.log(promiseTest2);
-        console.log(promiseTest3(3));
+        // console.log(promiseTest1());
+        // console.log(promiseTest2);
+        // console.log(promiseTest3(3));
 
         // Promiseチェーン
         // Promise .then(ok_callback, ng_callback)
@@ -61,6 +61,27 @@
 
         // Promise .catch(（ng_callback) NGはcatchで書いた方がいい
         // Promise .catch((ng_reason) => {})
+        console.log(1);
+        promiseTest(300, 2)
+        .then((change1) => { return promiseTest(change1, 3); })
+        .then((change2) => { return promiseTest(change2, 5); })
+        .catch((e) => { console.log(e); })
+        console.log(3);
+        // サーバとのやりとりなど時間がかかる処理また、かかる時間がわからないとき
+        // 通信速度、サーバ負荷、処理に時間がかかったり
+        function promiseTest(pay, seconds){
+            return new Promise((ok, ng) => {
+                setTimeout(() => {
+                    if(pay > 100){
+                        let change = pay - 100;
+                        console.log(`${seconds}秒、おつりは${change}です`);
+                        ok(change);
+                    } else {
+                        ng('お金が足りません');
+                    }
+                }, seconds * 1000);
+            });
+        }
 
         function promiseTest4(pay){
             return new Promise((ok, ng) => {
@@ -73,17 +94,17 @@
             });
         }
 
-        promiseTest4(180)
-        .then((change) => { // ok
-            console.log(change);
-            return promiseTest4(change);
-        })
-        .then((change2) => {
-            console.log(change2)
-        })
-        .catch((e) => { // ng
-            console.log(e);
-        });
+        // promiseTest4(180)
+        // .then((change) => { // ok
+        //     console.log(change);
+        //     return promiseTest4(change);
+        // })
+        // .then((change2) => {
+        //     console.log(change2)
+        // })
+        // .catch((e) => { // ng
+        //     console.log(e);
+        // });
 
         // promiseTest4(300).then((change) => { // .thenの引数は勝手に値が入るので名前はなんでもいい
         //     console.log(change);
