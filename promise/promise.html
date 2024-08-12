@@ -55,7 +55,48 @@
         console.log(promiseTest2);
         console.log(promiseTest3(3));
 
-        
+        // Promiseチェーン
+        // Promise .then(ok_callback, ng_callback)
+        // Promise .then((ok_value) => {}, (ng_reason) => {})
+
+        // Promise .catch(（ng_callback) NGはcatchで書いた方がいい
+        // Promise .catch((ng_reason) => {})
+
+        function promiseTest4(pay){
+            return new Promise((ok, ng) => {
+                if(pay > 100){
+                    let change = pay -100;
+                    ok(change);
+                } else { 
+                    ng('お金が足りません');
+                }
+            });
+        }
+
+        promiseTest4(180)
+        .then((change) => { // ok
+            console.log(change);
+            return promiseTest4(change);
+        })
+        .then((change2) => {
+            console.log(change2)
+        })
+        .catch((e) => { // ng
+            console.log(e);
+        });
+
+        // promiseTest4(300).then((change) => { // .thenの引数は勝手に値が入るので名前はなんでもいい
+        //     console.log(change);
+        //     return promiseTest4(change); // Promiseで返されるので、さらにpromiseを付け加えることができる
+        // }).then((change2) => {
+        //     console.log(change2);
+        //     return promiseTest4(change2);
+        // }).then((change3) => {
+        //     console.log(change3);
+        //     return promiseTest4(change3);
+        // }).then((change4) => {
+        //     console.log(change4);
+        // });
    </script> 
 </body>
 </html>
